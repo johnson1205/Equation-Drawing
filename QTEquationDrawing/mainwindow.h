@@ -15,6 +15,17 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void ZoomInorOut();
+    void graphSetting();
+    void graphplota();
+    void graphplotb();
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_clicked();
+
+    void on_lineEdit_returnPressed();
+
 private:
     Ui::MainWindow *ui;
 };
