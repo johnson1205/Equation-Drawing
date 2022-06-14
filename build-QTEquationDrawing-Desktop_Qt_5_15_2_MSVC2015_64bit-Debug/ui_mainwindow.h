@@ -14,6 +14,7 @@
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -33,6 +34,8 @@ public:
     QLineEdit *lineEdit;
     QLabel *label;
     QFrame *line;
+    QListWidget *listWidget;
+    QLabel *error_label;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -55,19 +58,28 @@ public:
         pushButton->setFlat(false);
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(710, 360, 121, 51));
+        pushButton_2->setGeometry(QRect(720, 370, 121, 51));
         lineEdit = new QLineEdit(centralwidget);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
         lineEdit->setGeometry(QRect(650, 20, 331, 25));
         lineEdit->setClearButtonEnabled(true);
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(570, 20, 71, 20));
+        label->setGeometry(QRect(580, 20, 71, 20));
         line = new QFrame(centralwidget);
         line->setObjectName(QString::fromUtf8("line"));
         line->setGeometry(QRect(580, 90, 391, 16));
         line->setFrameShape(QFrame::HLine);
         line->setFrameShadow(QFrame::Sunken);
+        listWidget = new QListWidget(centralwidget);
+        listWidget->setObjectName(QString::fromUtf8("listWidget"));
+        listWidget->setGeometry(QRect(580, 120, 401, 215));
+        error_label = new QLabel(centralwidget);
+        error_label->setObjectName(QString::fromUtf8("error_label"));
+        error_label->setGeometry(QRect(585, 460, 391, 41));
+        error_label->setContextMenuPolicy(Qt::DefaultContextMenu);
+        error_label->setStyleSheet(QString::fromUtf8("color:rgb(255, 0, 0)"));
+        error_label->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -89,8 +101,9 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "Create", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Clear", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow", "delete", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Function :", nullptr));
+        error_label->setText(QString());
     } // retranslateUi
 
 };

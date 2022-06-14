@@ -14,6 +14,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    int graphcnt = 0;
+    QList<QColor> colors;
 
 private slots:
     void ZoomInorOut();
@@ -21,11 +23,10 @@ private slots:
     void graphplota();
     void graphplotb();
     void on_pushButton_2_clicked();
-
     void on_pushButton_clicked();
-
     void on_lineEdit_returnPressed();
-
+    void listwidgetSetting();
+    void colorSetting();
 private:
     Ui::MainWindow *ui;
 };
