@@ -55,7 +55,7 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>715</x>
+      <x>645</x>
       <y>450</y>
       <width>121</width>
       <height>51</height>
@@ -283,6 +283,34 @@
    <widget class="QPushButton" name="VisableButton">
     <property name="geometry">
      <rect>
+      <x>790</x>
+      <y>450</y>
+      <width>120</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Switch Visable</string>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="clearExistingVariableButton">
+    <property name="geometry">
+     <rect>
       <x>720</x>
       <y>170</y>
       <width>120</width>
@@ -299,7 +327,7 @@
      <string notr="true"/>
     </property>
     <property name="text">
-     <string>Switch Visable</string>
+     <string>Clear</string>
     </property>
     <property name="default">
      <bool>false</bool>

@@ -46,6 +46,7 @@ public:
     QLineEdit *existingVariableName;
     QLabel *label_4;
     QPushButton *VisableButton;
+    QPushButton *clearExistingVariableButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -68,7 +69,7 @@ public:
         pushButton->setFlat(false);
         pushButton_2 = new QPushButton(centralwidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(715, 450, 121, 51));
+        pushButton_2->setGeometry(QRect(645, 450, 121, 51));
         lineEdit = new QLineEdit(centralwidget);
         lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
         lineEdit->setGeometry(QRect(665, 20, 306, 25));
@@ -134,11 +135,18 @@ public:
         label_4->setGeometry(QRect(580, 120, 131, 20));
         VisableButton = new QPushButton(centralwidget);
         VisableButton->setObjectName(QString::fromUtf8("VisableButton"));
-        VisableButton->setGeometry(QRect(720, 170, 120, 21));
+        VisableButton->setGeometry(QRect(790, 450, 120, 51));
         VisableButton->setCursor(QCursor(Qt::PointingHandCursor));
         VisableButton->setAutoFillBackground(true);
         VisableButton->setStyleSheet(QString::fromUtf8(""));
         VisableButton->setFlat(false);
+        clearExistingVariableButton = new QPushButton(centralwidget);
+        clearExistingVariableButton->setObjectName(QString::fromUtf8("clearExistingVariableButton"));
+        clearExistingVariableButton->setGeometry(QRect(720, 170, 120, 21));
+        clearExistingVariableButton->setCursor(QCursor(Qt::PointingHandCursor));
+        clearExistingVariableButton->setAutoFillBackground(true);
+        clearExistingVariableButton->setStyleSheet(QString::fromUtf8(""));
+        clearExistingVariableButton->setFlat(false);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -153,6 +161,7 @@ public:
         pushButton->setDefault(false);
         addButton->setDefault(false);
         VisableButton->setDefault(false);
+        clearExistingVariableButton->setDefault(false);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -170,6 +179,7 @@ public:
         addButton->setText(QCoreApplication::translate("MainWindow", "Add Variables", nullptr));
         label_4->setText(QCoreApplication::translate("MainWindow", "Existing variable:", nullptr));
         VisableButton->setText(QCoreApplication::translate("MainWindow", "Switch Visable", nullptr));
+        clearExistingVariableButton->setText(QCoreApplication::translate("MainWindow", "Clear", nullptr));
     } // retranslateUi
 
 };

@@ -24,6 +24,8 @@ MainWindow::~MainWindow()
 void MainWindow::ZoomInorOut(){
     ui->customplot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
     ui->customplot->rescaleAxes(true);
+    ui->customplot->xAxis->setRange(-10, 10);
+    ui->customplot->yAxis->setRange(-10, 10);
 }
 
 void MainWindow::graphSetting(){
@@ -206,3 +208,9 @@ void MainWindow::on_VisableButton_clicked()
     }
 }
 //----------     End     ----------
+
+void MainWindow::on_clearExistingVariableButton_clicked()
+{
+    ui->existingVariableName->clear();
+}
+

@@ -31,6 +31,8 @@ private slots:
 
     void on_VisableButton_clicked();
 
+    void on_clearExistingVariableButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
