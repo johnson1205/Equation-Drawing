@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     colorSetting();
     graphSetting();
-    graphplota();
+    //graphplota();
     //graphplotb();
     ZoomInorOut();
     listwidgetSetting();
@@ -30,7 +30,7 @@ void MainWindow::graphSetting(){
     ui->customplot->addGraph();
     ui->customplot->xAxis->setLabel("X");
     ui->customplot->yAxis->setLabel("Y");
-    ui->customplot->legend->setVisible(true);
+    //ui->customplot->legend->setVisible(true);
     // set axes ranges, so we see all data:
 }
 //----------     End    ----------
@@ -60,6 +60,7 @@ void MainWindow::colorSetting(){
 //----------GraphPlotting----------
 void MainWindow::graphplota(){
     // generate some data:
+    ui->customplot->addGraph();
     QVector<double> x(101), y(101); // initialize with entries 0..100
     for (int i=0; i<101; ++i)
     {
@@ -67,21 +68,26 @@ void MainWindow::graphplota(){
       y[i] = x[i]*x[i]; // let's plot a quadratic function
     }
     // create graph and assign data to it:
-    ui->customplot->graph(0)->setData(x, y);
+    ui->customplot->graph(graphcnt)->setData(x, y);
+    ui->customplot->graph(graphcnt)->setPen(QPen(colors[graphcnt%10]));
     ui->customplot->replot();
+    ui->customplot->rescaleAxes(true);
 }
 
 void MainWindow::graphplotb(){
     // generate some data:
-    QVector<double> x(101), y(101); // initialize with entries 0..100
-    for (int i=0; i<101; ++i)
+    ui->customplot->addGraph();
+    QVector<double> x(2001), y(2001); // initialize with entries 0..100
+    for (int i=0; i<2001; ++i)
     {
-      x[i] = i/50.0 - 1; // x goes from -1 to 1
-      y[i] = x[i]*x[i]; // let's plot a quadratic function
+      x[i] = i/100.0 - 10; // x goes from -1 to 1
+      y[i] = x[i]+graphcnt; // let's plot a quadratic function
     }
     // create graph and assign data to it:
-    ui->customplot->graph(1)->setData(x, y);
+    ui->customplot->graph(graphcnt)->setData(x, y);
+    ui->customplot->graph(graphcnt)->setPen(QPen(colors[graphcnt%10]));
     ui->customplot->replot();
+    ui->customplot->rescaleAxes(true);
 }
 //----------     End    ----------
 
@@ -91,7 +97,21 @@ void MainWindow::graphplotb(){
 void MainWindow::on_pushButton_2_clicked()
 {
     //ui->customplot->clearGraphs();
-    delete ui->listWidget->currentItem();
+    QListWidgetItem *line= ui->listWidget->currentItem();
+    if(line){
+        QString linestr = line->text();
+        QString graphstr = "";
+        int i = 0;
+        while(1){
+            if(linestr[i]=='.') break;
+            else graphstr=graphstr+linestr[i];
+            i++;
+        }
+        int graphnum = graphstr.toInt();
+        ui->customplot->graph(graphnum)->data().data()->clear();
+        delete ui->listWidget->currentItem();
+        ui->customplot->replot();
+    }
 }
 //----------     End    ----------
 //----------CreateButton----------
@@ -100,15 +120,20 @@ void MainWindow::on_pushButton_clicked()
 
     //if(checkVaild(ui->lineEdit->text())==1)
     if(ui->listWidget->count()<10){
+        graphcnt++;
         QListWidgetItem *ritem = new QListWidgetItem;
-        ritem->setText(ui->lineEdit->text());
+        ritem->setText(QString::number(graphcnt) + ".  " +ui->lineEdit->text());
 
         ritem->setBackgroundColor(colors[graphcnt%10]);
 
 
         ui->error_label->setText(QString(/*text*/ ));
         ui->listWidget->addItem(ritem);
-        graphcnt++;
+
+
+
+        graphplotb();
+
         ui->lineEdit->clear();
     }
     else{
