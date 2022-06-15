@@ -28,8 +28,8 @@
     <property name="geometry">
      <rect>
       <x>860</x>
-      <y>60</y>
-      <width>121</width>
+      <y>170</y>
+      <width>120</width>
       <height>21</height>
      </rect>
     </property>
@@ -55,8 +55,8 @@
    <widget class="QPushButton" name="pushButton_2">
     <property name="geometry">
      <rect>
-      <x>720</x>
-      <y>370</y>
+      <x>715</x>
+      <y>450</y>
       <width>121</width>
       <height>51</height>
      </rect>
@@ -68,9 +68,9 @@
    <widget class="QLineEdit" name="lineEdit">
     <property name="geometry">
      <rect>
-      <x>650</x>
+      <x>665</x>
       <y>20</y>
-      <width>331</width>
+      <width>306</width>
       <height>25</height>
      </rect>
     </property>
@@ -81,7 +81,7 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>580</x>
+      <x>585</x>
       <y>20</y>
       <width>71</width>
       <height>20</height>
@@ -94,8 +94,8 @@
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>90</y>
+      <x>585</x>
+      <y>150</y>
       <width>391</width>
       <height>16</height>
      </rect>
@@ -108,7 +108,7 @@
     <property name="geometry">
      <rect>
       <x>580</x>
-      <y>120</y>
+      <y>220</y>
       <width>401</width>
       <height>215</height>
      </rect>
@@ -117,8 +117,8 @@
    <widget class="QLabel" name="error_label">
     <property name="geometry">
      <rect>
-      <x>585</x>
-      <y>460</y>
+      <x>580</x>
+      <y>510</y>
       <width>391</width>
       <height>41</height>
      </rect>
@@ -134,6 +134,178 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>585</x>
+      <y>50</y>
+      <width>391</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>585</x>
+      <y>195</y>
+      <width>391</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>75</y>
+      <width>121</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Variable names :</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="variableName">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>75</y>
+      <width>71</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>785</x>
+      <y>75</y>
+      <width>111</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Variable value :</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="variableValue">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>75</y>
+      <width>71</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addButton">
+    <property name="geometry">
+     <rect>
+      <x>585</x>
+      <y>170</y>
+      <width>120</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Add Variables</string>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="existingVariableName">
+    <property name="geometry">
+     <rect>
+      <x>705</x>
+      <y>120</y>
+      <width>266</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">Background-color:rgb(230, 230, 230)</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>120</y>
+      <width>131</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Existing variable:</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="VisableButton">
+    <property name="geometry">
+     <rect>
+      <x>720</x>
+      <y>170</y>
+      <width>120</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>Switch Visable</string>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>

@@ -77,17 +77,17 @@ void MainWindow::graphplota(){
 void MainWindow::graphplotb(){
     // generate some data:
     ui->customplot->addGraph();
-    QVector<double> x(2001), y(2001); // initialize with entries 0..100
-    for (int i=0; i<2001; ++i)
+    QVector<double> x(100001), y(100001); // initialize with entries 0..100
+    for (int i=0; i<100001; ++i)
     {
-      x[i] = i/100.0 - 10; // x goes from -1 to 1
+      x[i] = i/50.0 - 1000; // x goes from -1 to 1
       y[i] = x[i]+graphcnt; // let's plot a quadratic function
     }
     // create graph and assign data to it:
     ui->customplot->graph(graphcnt)->setData(x, y);
     ui->customplot->graph(graphcnt)->setPen(QPen(colors[graphcnt%10]));
     ui->customplot->replot();
-    ui->customplot->rescaleAxes(true);
+    //ui->customplot->rescaleAxes(true);
 }
 //----------     End    ----------
 
@@ -108,6 +108,7 @@ void MainWindow::on_pushButton_2_clicked()
             i++;
         }
         int graphnum = graphstr.toInt();
+        //ui->customplot->graph(graphnum)->setVisible(false);
         ui->customplot->graph(graphnum)->data().data()->clear();
         delete ui->listWidget->currentItem();
         ui->customplot->replot();
@@ -119,10 +120,12 @@ void MainWindow::on_pushButton_clicked()
 {
 
     //if(checkVaild(ui->lineEdit->text())==1)
+
+
     if(ui->listWidget->count()<10){
         graphcnt++;
         QListWidgetItem *ritem = new QListWidgetItem;
-        ritem->setText(QString::number(graphcnt) + ".  " +ui->lineEdit->text());
+        ritem->setText(QString::number(graphcnt) + ".  " +ui->lineEdit->text()+","+ui->existingVariableName->text());
 
         ritem->setBackgroundColor(colors[graphcnt%10]);
 
@@ -135,7 +138,12 @@ void MainWindow::on_pushButton_clicked()
         graphplotb();
 
         ui->lineEdit->clear();
+        ui->variableName->clear();
+        ui->variableValue->clear();
+        ui->existingVariableName->clear();
     }
+
+
     else{
         ui->error_label->setText(QString("Over 10 functions"));
     }
@@ -149,3 +157,52 @@ void MainWindow::on_lineEdit_returnPressed()
     on_pushButton_clicked();
 }
 //----------     End    ----------
+//----------AddVariableButton----------
+void MainWindow::on_addButton_clicked()
+{
+    if(ui->variableName->text().size()!=0&&ui->variableValue->text().size()!=0){
+        if(ui->existingVariableName->text().size()!=0) ui->existingVariableName->setText(ui->existingVariableName->text()+";");
+        ui->existingVariableName->setText(ui->existingVariableName->text()+ui->variableName->text()+":"+ui->variableValue->text());
+        ui->variableName->clear();
+        ui->variableValue->clear();
+        ui->error_label->setText(QString(""));
+    }
+    else{
+        if(ui->variableName->text().size()==0&&ui->variableValue->text().size()==0){
+            ui->error_label->setText(QString("Please check \"Name\" and \"Value\" of variables"));
+        }
+        else if(ui->variableName->text().size()==0){
+            ui->error_label->setText(QString("Please check \"Name\" of variables"));
+        }
+        else if(ui->variableValue->text().size()==0){
+            ui->error_label->setText(QString("Please check \"Value\" of variables"));
+        }
+    }
+
+}
+//------------     End     ------------
+//----------VisableButton----------
+void MainWindow::on_VisableButton_clicked()
+{
+    QListWidgetItem *line= ui->listWidget->currentItem();
+    if(line){
+        QString linestr = line->text();
+        QString graphstr = "";
+        int i = 0;
+        while(1){
+            if(linestr[i]=='.') break;
+            else graphstr=graphstr+linestr[i];
+            i++;
+        }
+        int graphnum = graphstr.toInt();
+        if(ui->customplot->graph(graphnum)->visible()==1){
+            ui->customplot->graph(graphnum)->setVisible(false);
+            ui->customplot->replot();
+        }
+        else{
+            ui->customplot->graph(graphnum)->setVisible(true);
+            ui->customplot->replot();
+        }
+    }
+}
+//----------     End     ----------

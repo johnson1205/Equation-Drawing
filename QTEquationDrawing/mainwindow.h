@@ -27,6 +27,10 @@ private slots:
     void on_lineEdit_returnPressed();
     void listwidgetSetting();
     void colorSetting();
+    void on_addButton_clicked();
+
+    void on_VisableButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
