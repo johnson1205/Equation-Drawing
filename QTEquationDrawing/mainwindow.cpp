@@ -79,25 +79,25 @@ void MainWindow::graphplota(){
 void MainWindow::graphplotb(){
     exprtk::expression<double> expr;
     exprtk::parser<double> p;
-    //exprtk::symbol_table<double>;
-    p.compile("2", expr);
-
-
-
-
-    // generate some data:
+    exprtk::symbol_table<double> symbol;
+    p.compile(ui->lineEdit->text().toStdString(), expr);
     ui->customplot->addGraph();
     QVector<double> x(100001), y(100001); // initialize with entries 0..100
-    for (int i=0; i<100001; ++i)
+    int i = 0;
+    x[i]=0;
+    symbol.add_variable("x", x[i]);
+    expr.register_symbol_table(symbol);
+    p.compile(ui->lineEdit->text().toStdString(), expr);
+    for (i=0; i<100001; ++i)
     {
-      x[i] = i/50.0 - 1000; // x goes from -1 to 1
-      y[i] = expr.value(); // let's plot a quadratic function
+        x[i] = i/50.0 - 1000; // x goes from -1 to 1
+        y[i] = expr.value(); // let's plot a quadratic function
     }
     // create graph and assign data to it:
     ui->customplot->graph(graphcnt)->setData(x, y);
     ui->customplot->graph(graphcnt)->setPen(QPen(colors[graphcnt%10]));
     ui->customplot->replot();
-    //ui->customplot->rescaleAxes(true);
+   //ui->customplot->rescaleAxes(true);
 }
 //----------     End    ----------
 
