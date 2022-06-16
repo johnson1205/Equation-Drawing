@@ -236,6 +236,7 @@ Makefile: ..\QTEquationDrawing\QTEquationDrawing.pro D:\Qt\5.15.2\msvc2015_64\mk
 		D:\Qt\5.15.2\msvc2015_64\mkspecs\features\qt_config.prf \
 		D:\Qt\5.15.2\msvc2015_64\mkspecs\win32-msvc\qmake.conf \
 		D:\Qt\5.15.2\msvc2015_64\mkspecs\features\spec_post.prf \
+		.qmake.stash \
 		D:\Qt\5.15.2\msvc2015_64\mkspecs\features\exclusive_builds.prf \
 		D:\Qt\5.15.2\msvc2015_64\mkspecs\common\msvc-version.conf \
 		D:\Qt\5.15.2\msvc2015_64\mkspecs\features\toolchain.prf \
@@ -266,7 +267,6 @@ Makefile: ..\QTEquationDrawing\QTEquationDrawing.pro D:\Qt\5.15.2\msvc2015_64\mk
 		D:\Qt\5.15.2\msvc2015_64\lib\Qt5Gui.prl \
 		D:\Qt\5.15.2\msvc2015_64\lib\Qt5Core.prl \
 		D:\Qt\5.15.2\msvc2015_64\lib\qtmain.prl \
-		.qmake.stash \
 		D:\Qt\5.15.2\msvc2015_64\mkspecs\features\build_pass.prf \
 		D:\Qt\5.15.2\msvc2015_64\lib\Qt5PrintSupportd.prl \
 		D:\Qt\5.15.2\msvc2015_64\lib\Qt5Widgetsd.prl \
@@ -426,6 +426,7 @@ D:\Qt\5.15.2\msvc2015_64\mkspecs\features\qt_functions.prf:
 D:\Qt\5.15.2\msvc2015_64\mkspecs\features\qt_config.prf:
 D:\Qt\5.15.2\msvc2015_64\mkspecs\win32-msvc\qmake.conf:
 D:\Qt\5.15.2\msvc2015_64\mkspecs\features\spec_post.prf:
+.qmake.stash:
 D:\Qt\5.15.2\msvc2015_64\mkspecs\features\exclusive_builds.prf:
 D:\Qt\5.15.2\msvc2015_64\mkspecs\common\msvc-version.conf:
 D:\Qt\5.15.2\msvc2015_64\mkspecs\features\toolchain.prf:
@@ -456,7 +457,6 @@ D:\Qt\5.15.2\msvc2015_64\lib\Qt5Widgets.prl:
 D:\Qt\5.15.2\msvc2015_64\lib\Qt5Gui.prl:
 D:\Qt\5.15.2\msvc2015_64\lib\Qt5Core.prl:
 D:\Qt\5.15.2\msvc2015_64\lib\qtmain.prl:
-.qmake.stash:
 D:\Qt\5.15.2\msvc2015_64\mkspecs\features\build_pass.prf:
 D:\Qt\5.15.2\msvc2015_64\lib\Qt5PrintSupportd.prl:
 D:\Qt\5.15.2\msvc2015_64\lib\Qt5Widgetsd.prl:
