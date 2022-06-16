@@ -85,12 +85,14 @@ void MainWindow::graphplotb(){
     QVector<double> x(100001), y(100001); // initialize with entries 0..100
     int i = 0;
     x[i]=0;
-    symbol.add_variable("x", x[i]);
+    double tmpx = x[i];
+    symbol.add_variable("x", tmpx);
     expr.register_symbol_table(symbol);
     p.compile(ui->lineEdit->text().toStdString(), expr);
     for (i=0; i<100001; ++i)
     {
         x[i] = i/50.0 - 1000; // x goes from -1 to 1
+        tmpx=x[i];
         y[i] = expr.value(); // let's plot a quadratic function
     }
     // create graph and assign data to it:
