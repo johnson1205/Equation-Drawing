@@ -77,6 +77,7 @@ void MainWindow::graphplota(){
 }
 
 void MainWindow::graphplotb(){
+    //exprtk setting
     exprtk::expression<double> expr;
     exprtk::parser<double> p;
     exprtk::symbol_table<double> symbol;
@@ -87,6 +88,42 @@ void MainWindow::graphplotb(){
     x[i]=0;
     double tmpx = x[i];
     symbol.add_variable("x", tmpx);
+    //
+
+    //assign variables
+    std::vector<std::string> variableStr;
+    std::vector<double> variableValue;
+    int index = 0;
+    int state = 0;//0 is name, 1 is num
+    std::string nametmp = "";
+    std::string valuetmp = "";
+    for(int i = 0; i < ui->existingVariableName->text().size(); i++){
+        if(ui->existingVariableName->text()[i]==':'){
+            state = 1;
+            variableStr.push_back(nametmp);
+            nametmp="";
+        }
+        else if(ui->existingVariableName->text()[i]==';'/*||i==ui->existingVariableName->text().size()-1*/){
+            state = 0;
+            variableValue.push_back(stod(valuetmp));
+            valuetmp="";
+            index++;
+        }
+        else{
+            if(state==0){
+                nametmp=nametmp+ui->existingVariableName->text().toStdString()[i];
+            }
+            else if(state==1){
+                valuetmp=valuetmp+ui->existingVariableName->text().toStdString()[i];
+            }
+        }
+    }
+    for(int i = 0; i <index; i++){
+        //ui->error_label->setText(ui->error_label->text()+QString::fromStdString(variableStr[i]));
+        symbol.add_variable(variableStr[i], variableValue[i]);
+    }
+    //
+
     expr.register_symbol_table(symbol);
     p.compile(ui->lineEdit->text().toStdString(), expr);
     for (i=0; i<100001; ++i)
@@ -173,8 +210,8 @@ void MainWindow::on_lineEdit_returnPressed()
 void MainWindow::on_addButton_clicked()
 {
     if(ui->variableName->text().size()!=0&&ui->variableValue->text().size()!=0){
-        if(ui->existingVariableName->text().size()!=0) ui->existingVariableName->setText(ui->existingVariableName->text()+";");
         ui->existingVariableName->setText(ui->existingVariableName->text()+ui->variableName->text()+":"+ui->variableValue->text());
+        ui->existingVariableName->setText(ui->existingVariableName->text()+";");
         ui->variableName->clear();
         ui->variableValue->clear();
         ui->error_label->setText(QString(""));
