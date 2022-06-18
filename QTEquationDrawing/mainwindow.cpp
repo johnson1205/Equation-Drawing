@@ -76,7 +76,7 @@ void MainWindow::graphplota(){
     ui->customplot->rescaleAxes(true);
 }
 
-void MainWindow::graphplotb(){
+int MainWindow::graphplotb(){
     //exprtk setting
     exprtk::expression<double> expr;
     exprtk::parser<double> p;
@@ -120,12 +120,14 @@ void MainWindow::graphplotb(){
     }
     for(int i = 0; i <index; i++){
         //ui->error_label->setText(ui->error_label->text()+QString::fromStdString(variableStr[i]));
+        if(variableStr[i]=="y") return -1;
         symbol.add_variable(variableStr[i], variableValue[i]);
     }
     //
 
     expr.register_symbol_table(symbol);
     p.compile(ui->lineEdit->text().toStdString(), expr);
+    if(expr.value()!=expr.value()) return -1;
     for (i=0; i<100001; ++i)
     {
         x[i] = i/50.0 - 1000; // x goes from -1 to 1
@@ -134,9 +136,13 @@ void MainWindow::graphplotb(){
     }
     // create graph and assign data to it:
     ui->customplot->graph(graphcnt)->setData(x, y);
-    ui->customplot->graph(graphcnt)->setPen(QPen(colors[graphcnt%10]));
+    QPen pen;
+    pen.setColor(colors[graphcnt%10]);
+    pen.setWidth(2);
+    ui->customplot->graph(graphcnt)->setPen(pen);
     ui->customplot->replot();
    //ui->customplot->rescaleAxes(true);
+    return 0;
 }
 //----------     End    ----------
 
@@ -172,24 +178,33 @@ void MainWindow::on_pushButton_clicked()
 
 
     if(ui->listWidget->count()<10){
+        //graphcnt++;
+        //QListWidgetItem *ritem = new QListWidgetItem;
+        //ritem->setText(QString::number(graphcnt) + ".  " +ui->lineEdit->text()+","+ui->existingVariableName->text());
+
+        //ritem->setBackgroundColor(colors[graphcnt%10]);
+
+
+        //ui->error_label->setText(QString(/*text*/ ));
+        //ui->listWidget->addItem(ritem);
+
+
         graphcnt++;
-        QListWidgetItem *ritem = new QListWidgetItem;
-        ritem->setText(QString::number(graphcnt) + ".  " +ui->lineEdit->text()+","+ui->existingVariableName->text());
-
-        ritem->setBackgroundColor(colors[graphcnt%10]);
-
-
-        ui->error_label->setText(QString(/*text*/ ));
-        ui->listWidget->addItem(ritem);
-
-
-
-        graphplotb();
-
-        ui->lineEdit->clear();
-        ui->variableName->clear();
-        ui->variableValue->clear();
-        ui->existingVariableName->clear();
+        if(graphplotb()==0){
+            QListWidgetItem *ritem = new QListWidgetItem;
+            ritem->setText(QString::number(graphcnt) + ".  " +ui->lineEdit->text()+","+ui->existingVariableName->text());
+            ritem->setBackgroundColor(colors[graphcnt%10]);
+            ui->error_label->setText(QString(/*text*/ ));
+            ui->listWidget->addItem(ritem);
+            ui->lineEdit->clear();
+            ui->variableName->clear();
+            ui->variableValue->clear();
+            ui->existingVariableName->clear();
+        }
+        else{
+            ui->error_label->setText(QString("Illegal formula")+": "+ui->lineEdit->text());
+            graphcnt--;
+        }
     }
 
 
@@ -209,7 +224,7 @@ void MainWindow::on_lineEdit_returnPressed()
 //----------AddVariableButton----------
 void MainWindow::on_addButton_clicked()
 {
-    if(ui->variableName->text().size()!=0&&ui->variableValue->text().size()!=0){
+    if(ui->variableName->text().size()!=0&&ui->variableValue->text().size()!=0&&ui->variableName->text()!="y"){
         ui->existingVariableName->setText(ui->existingVariableName->text()+ui->variableName->text()+":"+ui->variableValue->text());
         ui->existingVariableName->setText(ui->existingVariableName->text()+";");
         ui->variableName->clear();
@@ -217,6 +232,9 @@ void MainWindow::on_addButton_clicked()
         ui->error_label->setText(QString(""));
     }
     else{
+        if(ui->variableName->text()=="y"){
+            ui->error_label->setText(QString("illegal variable name \"y\""));
+        }
         if(ui->variableName->text().size()==0&&ui->variableValue->text().size()==0){
             ui->error_label->setText(QString("Please check \"Name\" and \"Value\" of variables"));
         }

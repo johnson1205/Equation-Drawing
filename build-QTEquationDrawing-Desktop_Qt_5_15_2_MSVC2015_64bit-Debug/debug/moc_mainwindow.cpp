@@ -88,7 +88,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Int,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -110,7 +110,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->ZoomInorOut(); break;
         case 1: _t->graphSetting(); break;
         case 2: _t->graphplota(); break;
-        case 3: _t->graphplotb(); break;
+        case 3: { int _r = _t->graphplotb();
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
         case 4: _t->on_pushButton_2_clicked(); break;
         case 5: _t->on_pushButton_clicked(); break;
         case 6: _t->on_lineEdit_returnPressed(); break;
@@ -122,7 +123,6 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject MainWindow::staticMetaObject = { {
