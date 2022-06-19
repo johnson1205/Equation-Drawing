@@ -11,7 +11,7 @@ It is the 3'rd project in the lecture of OOP(Object-oriented programming) in NTU
 
 ## Sample input
 - Formula: 2*x
-- Formula: sin(x\*pi+1)
+- Formula: sin(x*x+2)
 - Formula: a\*x^2+b\*x+c
   - Variable name: a, Variable value: 1
   - Variable name: b, Variable value: 2
